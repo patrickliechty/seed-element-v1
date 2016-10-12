@@ -14,7 +14,7 @@ Then, go ahead and download the element's dependencies:
 
     bower install
 
-
+You must use Chrome Canary version 53 minimum to run demo.
 
 ## Playing With Your Element
 
@@ -33,9 +33,6 @@ Once running, you can preview your element at
 
 
 ## Testing Your Element
-
-Simply navigate to the `/test` directory of your element to run its tests. If
-you are using Polyserve: `http://localhost:8080/components/seed-element/test/`
 
 ### web-component-tester
 
