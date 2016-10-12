@@ -1,0 +1,24 @@
+{
+  "name": "seed-element-v1",
+  "version": "1.0.0",
+  "authors": [
+    "Anonymous <anonymous@example.com>"
+  ],
+  "description": "An element providing a solution to no problem in particular.",
+  "keywords": [
+    "web-component",
+    "seed",
+    "v1"
+  ],
+  "main": "seed-element-v1.html",
+  "ignore": [
+    "/.*",
+    "/test/"
+  ],
+  "dependencies": {
+    "webcomponentsjs": "git+https://github.com/webcomponents/webcomponentsjs.git"
+  },
+  "devDependencies": {
+    "web-component-tester": "^4.0.0"
+  }
+}

@@ -1,0 +1,125 @@
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+    <title>seed-element-v1 Demo</title>
+  </head>
+  <body>
+    <template>
+      <style>
+        :host {
+          display: block;
+          box-sizing: border-box;
+        }
+
+        .author img {
+          display: block;
+          float: left;
+          margin-right: 5px;
+          max-height: 100px;
+          max-width: 100px;
+        }
+      </style>
+
+      <h1>&lt;seed-element-v1&gt;</h1>
+      <content></content>
+      <p class="author">
+        <img class='image'>
+        Cheers,<br/>
+        <span class="name"></span>
+      </p>
+    </template>
+
+  <script>
+    (function(document, HTMLElement) {
+
+      /**
+       * Reference the template tag in this current document when HTML imported
+       * (Contains a fix for the `document.currentScript`/`document._currentScript`
+       * https://github.com/webcomponents/webcomponentsjs#html-imports-documentcurrentscript-doesnt-work-as-expected-)
+       */
+      var querySelector = function(selector) {
+        var script = document._currentScript || document.currentScript;
+        return script.ownerDocument.querySelector(selector);
+      };
+
+      var template = querySelector('template');
+
+      class SeedElementV1 extends HTMLElement {
+
+        constructor() {
+          super();
+          this._author = null;
+        }
+
+        static get observedAttributes() {
+          return ['author'];
+        }
+
+        /**
+         * Sometimes it's just nice to say hi.
+         *
+         * @param {string} greeting A positive greeting.
+         * @return {string} The full greeting.
+         */
+        sayHello(greeting) {
+          console.log("Say helo greeting")
+          var response = greeting || 'Hello World!';
+          return 'seed-element-v1 says, ' + response;
+        }
+
+        fireLasers() {
+          console.log("fireLasers")
+          var e = document.createEvent('HtmlEvents');
+          e.initEvent('seed-element-lasers', true, true);
+          e.data = {sound: 'Pew pew1!'};
+          document.dispatchEvent(e);
+        }
+
+        get author() {
+          console.log("get author: ")
+          return this.getAttribute('author');
+        }
+
+        set author(val) {
+          console.log("set author: ", val)
+          if (val) {
+            this.setAttribute('author', val);
+          } else {
+            this.removeAttribute('author');
+          }
+        }
+
+        connectedCallback() {
+          console.log("connectedCallback")
+          this.createShadow();
+        }
+
+        createShadow() {
+          if (!this._shadowRoot) {
+            this._shadowRoot = this.attachShadow({mode: 'open'});
+            this._shadowRoot.appendChild(document.importNode(template.content, true));
+          }
+        }
+
+        attributeChangedCallback(attrName, oldVal, newVal) {
+          this.createShadow();
+          console.log("attributeChangedCallback: attrName: " + attrName + " = " + newVal);
+          this._author = typeof newVal === 'string' ? JSON.parse(newVal) : newVal;
+          this._updateTemplate();
+        }
+
+        _updateTemplate() {
+          if (this._author && this._shadowRoot) {
+            console.log('updateTemplate: ', this._author);
+            this._shadowRoot.querySelector('.name').textContent = this._author.name;
+            this._shadowRoot.querySelector('.image').src = this._author.image;
+          }
+        }
+      }
+      seelElement = customElements.define('seed-element-v1', SeedElementV1);
+      //shadowRoot = seelElement.attachShadow({mode: 'open'});
+      //shadowRoot.appendChild(document.importNode(template.content, true));
+    })(document, HTMLElement);
+  </script>
+</html>
