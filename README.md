@@ -1,6 +1,6 @@
 # seed-element-v1
 
-An element that implements the Polymer Seed Element in raw web components
+An element that implements the Polymer Seed Element in raw v1 spec web components
 
 
 ## Dependencies
