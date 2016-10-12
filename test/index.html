@@ -16,6 +16,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   <body>
     <script>
       // Load and run all tests (.html, .js):
+      WCT.waitForFrameworks = false;
       WCT.loadSuites([
         'basic-test.html',
         'basic-test.html?dom=shadow'

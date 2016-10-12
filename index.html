@@ -4,36 +4,15 @@
 
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="import" href="seed-element-v1.html">
 
 </head>
 <body>
-  <p>An example of <code>&lt;seed-element-v1&gt;</code>:</p>
+  <h3>Seed Element V1</h3>
 
-  <p>Make words! <button id="saybtn" onclick="">Say Something</button></p>
-  <p>Make lasers! <button id="laserbtn">Fire lasers</button></p>
+  <p>Custom element seed-element-v1 implements the same functionality
+    as Polymer seed element but in raw web components v1 spec</p>
+  <p>Chrome Canary v53 is required to run the demo.</p>
 
-  <seed-element-v1 author='{"name": "Lord Meowser", "image": "http://lorempixel.com/g/300/200/cats/"}' fancy>
-    <h2>Hello seed-element-v1</h2>
-  </seed-element-v1>
-
-  <script>
-
-    document.querySelector('#saybtn').addEventListener('click', function() {
-      var seedElement = document.querySelector('seed-element-v1');
-      alert(seedElement.sayHello('Hallo!'));
-    });
-
-    document.querySelector('#laserbtn').addEventListener('click', function() {
-      var seedElement = document.querySelector('seed-element-v1');
-      seedElement.fireLasers();
-    });
-
-    document.addEventListener("seed-element-lasers", function(e) {
-      console.log(e.data.sound);
-    });
-
-  </script>
-
+  <p>Run the demo at <a href="http://localhost:3000/demo/">Run the Demo</a></p>
 </body>
 </html>

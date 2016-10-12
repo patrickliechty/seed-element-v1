@@ -4,7 +4,7 @@
 
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="import" href="seed-element-v1.html">
+  <link rel="import" href="../seed-element-v1.html">
 
 </head>
 <body>
@@ -12,6 +12,7 @@
 
   <p>Make words! <button id="saybtn" onclick="">Say Something</button></p>
   <p>Make lasers! <button id="laserbtn">Fire lasers</button></p>
+  <p>Update Author <button id="updateAuthor">Update Author</button></p>
 
   <seed-element-v1 author='{"name": "Lord Meowser", "image": "http://lorempixel.com/g/300/200/cats/"}' fancy>
     <h2>Hello seed-element-v1</h2>
@@ -31,6 +32,11 @@
 
     document.addEventListener("seed-element-lasers", function(e) {
       console.log(e.data.sound);
+    });
+
+    document.querySelector("#updateAuthor").addEventListener('click', function() {
+      var seedElement = document.querySelector('seed-element-v1');
+      seedElement.author = '{"name": "Grumpy Cat", "image": "http://journalthis.danoah.com/wp-content/uploads/best-funniest-grumpy-cat-4.jpg"}';
     });
 
   </script>
